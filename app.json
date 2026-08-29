@@ -1,0 +1,1433 @@
+{
+  "id": "ai-clinical-appeals-external-review",
+  "title": "AppealPath Clinical",
+  "tagline": "Denial triage, clinical evidence, appeal submission, peer review, and overturn analytics",
+  "industry": "Healthcare Appeals",
+  "port": 4543,
+  "accent": "#be123c",
+  "valueLabel": "Denied value managed",
+  "value": "$185M",
+  "workflows": [
+    {
+      "id": "denial",
+      "title": "Clinical Denial Intake",
+      "description": "Evaluate clinical denial intake with source evidence, accountable ownership, financial or operational impact, and documented approval.",
+      "fields": [
+        {
+          "key": "caseReference",
+          "label": "Clinical Denial Intake Reference",
+          "type": "text",
+          "required": true
+        },
+        {
+          "key": "entity",
+          "label": "Denied Service",
+          "type": "text",
+          "required": true
+        },
+        {
+          "key": "reviewDate",
+          "label": "Review Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "key": "metric",
+          "label": "Denied Amount",
+          "type": "currency",
+          "required": true
+        },
+        {
+          "key": "evidenceNotes",
+          "label": "Evidence and Reviewer Notes",
+          "type": "textarea",
+          "required": false
+        }
+      ],
+      "states": [
+        "intake",
+        "analyzing",
+        "review",
+        "approved",
+        "closed"
+      ],
+      "examples": [
+        {
+          "id": "standard",
+          "label": "Fill Standard Case",
+          "values": {
+            "caseReference": "Clinical Denial Intake Reference STD-2026-104",
+            "entity": "Denied Service STD-2026-104",
+            "reviewDate": "2026-09-08",
+            "metric": 285000,
+            "evidenceNotes": "Complete: source evidence, financial impact, control context, and documented reviewer rationale are available for analysis."
+          }
+        },
+        {
+          "id": "high-risk",
+          "label": "Fill High-Risk Case",
+          "values": {
+            "caseReference": "Clinical Denial Intake Reference RISK-2026-227",
+            "entity": "Denied Service RISK-2026-227",
+            "reviewDate": "2026-08-19",
+            "metric": 875000,
+            "evidenceNotes": "Critical exception: source evidence, financial impact, control context, and documented reviewer rationale are available for analysis."
+          }
+        },
+        {
+          "id": "exception",
+          "label": "Fill Exception Case",
+          "values": {
+            "caseReference": "Clinical Denial Intake Reference EXC-2026-319",
+            "entity": "Denied Service EXC-2026-319",
+            "reviewDate": "2026-08-10",
+            "metric": 142500,
+            "evidenceNotes": "Reviewer follow-up: source evidence, financial impact, control context, and documented reviewer rationale are available for analysis."
+          }
+        }
+      ],
+      "aiActions": [
+        {
+          "id": "assess",
+          "label": "Assess Risk & Value"
+        },
+        {
+          "id": "evidence",
+          "label": "Build Evidence Checklist"
+        },
+        {
+          "id": "plan",
+          "label": "Recommend Action Plan"
+        }
+      ]
+    },
+    {
+      "id": "deadline",
+      "title": "Appeal Deadline Calculation",
+      "description": "Evaluate appeal deadline calculation with source evidence, accountable ownership, financial or operational impact, and documented approval.",
+      "fields": [
+        {
+          "key": "caseReference",
+          "label": "Appeal Deadline Calculation Reference",
+          "type": "text",
+          "required": true
+        },
+        {
+          "key": "entity",
+          "label": "Denied Service",
+          "type": "text",
+          "required": true
+        },
+        {
+          "key": "reviewDate",
+          "label": "Review Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "key": "metric",
+          "label": "Days Remaining",
+          "type": "number",
+          "required": true
+        },
+        {
+          "key": "evidenceNotes",
+          "label": "Evidence and Reviewer Notes",
+          "type": "textarea",
+          "required": false
+        }
+      ],
+      "states": [
+        "intake",
+        "analyzing",
+        "review",
+        "approved",
+        "closed"
+      ],
+      "examples": [
+        {
+          "id": "standard",
+          "label": "Fill Standard Case",
+          "values": {
+            "caseReference": "Appeal Deadline Calculation Reference STD-2026-104",
+            "entity": "Denied Service STD-2026-104",
+            "reviewDate": "2026-09-08",
+            "metric": 125,
+            "evidenceNotes": "Complete: source evidence, financial impact, control context, and documented reviewer rationale are available for analysis."
+          }
+        },
+        {
+          "id": "high-risk",
+          "label": "Fill High-Risk Case",
+          "values": {
+            "caseReference": "Appeal Deadline Calculation Reference RISK-2026-227",
+            "entity": "Denied Service RISK-2026-227",
+            "reviewDate": "2026-08-19",
+            "metric": 975,
+            "evidenceNotes": "Critical exception: source evidence, financial impact, control context, and documented reviewer rationale are available for analysis."
+          }
+        },
+        {
+          "id": "exception",
+          "label": "Fill Exception Case",
+          "values": {
+            "caseReference": "Appeal Deadline Calculation Reference EXC-2026-319",
+            "entity": "Denied Service EXC-2026-319",
+            "reviewDate": "2026-08-10",
+            "metric": 41,
+            "evidenceNotes": "Reviewer follow-up: source evidence, financial impact, control context, and documented reviewer rationale are available for analysis."
+          }
+        }
+      ],
+      "aiActions": [
+        {
+          "id": "assess",
+          "label": "Assess Risk & Value"
+        },
+        {
+          "id": "evidence",
+          "label": "Build Evidence Checklist"
+        },
+        {
+          "id": "plan",
+          "label": "Recommend Action Plan"
+        }
+      ]
+    },
+    {
+      "id": "evidence",
+      "title": "Clinical Evidence Assembly",
+      "description": "Evaluate clinical evidence assembly with source evidence, accountable ownership, financial or operational impact, and documented approval.",
+      "fields": [
+        {
+          "key": "caseReference",
+          "label": "Clinical Evidence Assembly Reference",
+          "type": "text",
+          "required": true
+        },
+        {
+          "key": "entity",
+          "label": "Denied Service",
+          "type": "text",
+          "required": true
+        },
+        {
+          "key": "reviewDate",
+          "label": "Review Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "key": "metric",
+          "label": "Evidence Completeness",
+          "type": "number",
+          "required": true
+        },
+        {
+          "key": "evidenceNotes",
+          "label": "Evidence and Reviewer Notes",
+          "type": "textarea",
+          "required": false
+        }
+      ],
+      "states": [
+        "intake",
+        "analyzing",
+        "review",
+        "approved",
+        "closed"
+      ],
+      "examples": [
+        {
+          "id": "standard",
+          "label": "Fill Standard Case",
+          "values": {
+            "caseReference": "Clinical Evidence Assembly Reference STD-2026-104",
+            "entity": "Denied Service STD-2026-104",
+            "reviewDate": "2026-09-08",
+            "metric": 125,
+            "evidenceNotes": "Complete: source evidence, financial impact, control context, and documented reviewer rationale are available for analysis."
+          }
+        },
+        {
+          "id": "high-risk",
+          "label": "Fill High-Risk Case",
+          "values": {
+            "caseReference": "Clinical Evidence Assembly Reference RISK-2026-227",
+            "entity": "Denied Service RISK-2026-227",
+            "reviewDate": "2026-08-19",
+            "metric": 975,
+            "evidenceNotes": "Critical exception: source evidence, financial impact, control context, and documented reviewer rationale are available for analysis."
+          }
+        },
+        {
+          "id": "exception",
+          "label": "Fill Exception Case",
+          "values": {
+            "caseReference": "Clinical Evidence Assembly Reference EXC-2026-319",
+            "entity": "Denied Service EXC-2026-319",
+            "reviewDate": "2026-08-10",
+            "metric": 41,
+            "evidenceNotes": "Reviewer follow-up: source evidence, financial impact, control context, and documented reviewer rationale are available for analysis."
+          }
+        }
+      ],
+      "aiActions": [
+        {
+          "id": "assess",
+          "label": "Assess Risk & Value"
+        },
+        {
+          "id": "evidence",
+          "label": "Build Evidence Checklist"
+        },
+        {
+          "id": "plan",
+          "label": "Recommend Action Plan"
+        }
+      ]
+    },
+    {
+      "id": "letter",
+      "title": "Appeal Letter Generation",
+      "description": "Evaluate appeal letter generation with source evidence, accountable ownership, financial or operational impact, and documented approval.",
+      "fields": [
+        {
+          "key": "caseReference",
+          "label": "Appeal Letter Generation Reference",
+          "type": "text",
+          "required": true
+        },
+        {
+          "key": "entity",
+          "label": "Denied Service",
+          "type": "text",
+          "required": true
+        },
+        {
+          "key": "reviewDate",
+          "label": "Review Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "key": "metric",
+          "label": "Appeal Value",
+          "type": "currency",
+          "required": true
+        },
+        {
+          "key": "evidenceNotes",
+          "label": "Evidence and Reviewer Notes",
+          "type": "textarea",
+          "required": false
+        }
+      ],
+      "states": [
+        "intake",
+        "analyzing",
+        "review",
+        "approved",
+        "closed"
+      ],
+      "examples": [
+        {
+          "id": "standard",
+          "label": "Fill Standard Case",
+          "values": {
+            "caseReference": "Appeal Letter Generation Reference STD-2026-104",
+            "entity": "Denied Service STD-2026-104",
+            "reviewDate": "2026-09-08",
+            "metric": 285000,
+            "evidenceNotes": "Complete: source evidence, financial impact, control context, and documented reviewer rationale are available for analysis."
+          }
+        },
+        {
+          "id": "high-risk",
+          "label": "Fill High-Risk Case",
+          "values": {
+            "caseReference": "Appeal Letter Generation Reference RISK-2026-227",
+            "entity": "Denied Service RISK-2026-227",
+            "reviewDate": "2026-08-19",
+            "metric": 875000,
+            "evidenceNotes": "Critical exception: source evidence, financial impact, control context, and documented reviewer rationale are available for analysis."
+          }
+        },
+        {
+          "id": "exception",
+          "label": "Fill Exception Case",
+          "values": {
+            "caseReference": "Appeal Letter Generation Reference EXC-2026-319",
+            "entity": "Denied Service EXC-2026-319",
+            "reviewDate": "2026-08-10",
+            "metric": 142500,
+            "evidenceNotes": "Reviewer follow-up: source evidence, financial impact, control context, and documented reviewer rationale are available for analysis."
+          }
+        }
+      ],
+      "aiActions": [
+        {
+          "id": "assess",
+          "label": "Assess Risk & Value"
+        },
+        {
+          "id": "evidence",
+          "label": "Build Evidence Checklist"
+        },
+        {
+          "id": "plan",
+          "label": "Recommend Action Plan"
+        }
+      ]
+    },
+    {
+      "id": "peer",
+      "title": "Peer-to-Peer Review",
+      "description": "Evaluate peer-to-peer review with source evidence, accountable ownership, financial or operational impact, and documented approval.",
+      "fields": [
+        {
+          "key": "caseReference",
+          "label": "Peer-to-Peer Review Reference",
+          "type": "text",
+          "required": true
+        },
+        {
+          "key": "entity",
+          "label": "Denied Service",
+          "type": "text",
+          "required": true
+        },
+        {
+          "key": "reviewDate",
+          "label": "Review Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "key": "metric",
+          "label": "Reviews Scheduled",
+          "type": "number",
+          "required": true
+        },
+        {
+          "key": "evidenceNotes",
+          "label": "Evidence and Reviewer Notes",
+          "type": "textarea",
+          "required": false
+        }
+      ],
+      "states": [
+        "intake",
+        "analyzing",
+        "review",
+        "approved",
+        "closed"
+      ],
+      "examples": [
+        {
+          "id": "standard",
+          "label": "Fill Standard Case",
+          "values": {
+            "caseReference": "Peer-to-Peer Review Reference STD-2026-104",
+            "entity": "Denied Service STD-2026-104",
+            "reviewDate": "2026-09-08",
+            "metric": 125,
+            "evidenceNotes": "Complete: source evidence, financial impact, control context, and documented reviewer rationale are available for analysis."
+          }
+        },
+        {
+          "id": "high-risk",
+          "label": "Fill High-Risk Case",
+          "values": {
+            "caseReference": "Peer-to-Peer Review Reference RISK-2026-227",
+            "entity": "Denied Service RISK-2026-227",
+            "reviewDate": "2026-08-19",
+            "metric": 975,
+            "evidenceNotes": "Critical exception: source evidence, financial impact, control context, and documented reviewer rationale are available for analysis."
+          }
+        },
+        {
+          "id": "exception",
+          "label": "Fill Exception Case",
+          "values": {
+            "caseReference": "Peer-to-Peer Review Reference EXC-2026-319",
+            "entity": "Denied Service EXC-2026-319",
+            "reviewDate": "2026-08-10",
+            "metric": 41,
+            "evidenceNotes": "Reviewer follow-up: source evidence, financial impact, control context, and documented reviewer rationale are available for analysis."
+          }
+        }
+      ],
+      "aiActions": [
+        {
+          "id": "assess",
+          "label": "Assess Risk & Value"
+        },
+        {
+          "id": "evidence",
+          "label": "Build Evidence Checklist"
+        },
+        {
+          "id": "plan",
+          "label": "Recommend Action Plan"
+        }
+      ]
+    },
+    {
+      "id": "level-two",
+      "title": "Second-Level Appeal",
+      "description": "Evaluate second-level appeal with source evidence, accountable ownership, financial or operational impact, and documented approval.",
+      "fields": [
+        {
+          "key": "caseReference",
+          "label": "Second-Level Appeal Reference",
+          "type": "text",
+          "required": true
+        },
+        {
+          "key": "entity",
+          "label": "Denied Service",
+          "type": "text",
+          "required": true
+        },
+        {
+          "key": "reviewDate",
+          "label": "Review Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "key": "metric",
+          "label": "Cases Escalated",
+          "type": "number",
+          "required": true
+        },
+        {
+          "key": "evidenceNotes",
+          "label": "Evidence and Reviewer Notes",
+          "type": "textarea",
+          "required": false
+        }
+      ],
+      "states": [
+        "intake",
+        "analyzing",
+        "review",
+        "approved",
+        "closed"
+      ],
+      "examples": [
+        {
+          "id": "standard",
+          "label": "Fill Standard Case",
+          "values": {
+            "caseReference": "Second-Level Appeal Reference STD-2026-104",
+            "entity": "Denied Service STD-2026-104",
+            "reviewDate": "2026-09-08",
+            "metric": 125,
+            "evidenceNotes": "Complete: source evidence, financial impact, control context, and documented reviewer rationale are available for analysis."
+          }
+        },
+        {
+          "id": "high-risk",
+          "label": "Fill High-Risk Case",
+          "values": {
+            "caseReference": "Second-Level Appeal Reference RISK-2026-227",
+            "entity": "Denied Service RISK-2026-227",
+            "reviewDate": "2026-08-19",
+            "metric": 975,
+            "evidenceNotes": "Critical exception: source evidence, financial impact, control context, and documented reviewer rationale are available for analysis."
+          }
+        },
+        {
+          "id": "exception",
+          "label": "Fill Exception Case",
+          "values": {
+            "caseReference": "Second-Level Appeal Reference EXC-2026-319",
+            "entity": "Denied Service EXC-2026-319",
+            "reviewDate": "2026-08-10",
+            "metric": 41,
+            "evidenceNotes": "Reviewer follow-up: source evidence, financial impact, control context, and documented reviewer rationale are available for analysis."
+          }
+        }
+      ],
+      "aiActions": [
+        {
+          "id": "assess",
+          "label": "Assess Risk & Value"
+        },
+        {
+          "id": "evidence",
+          "label": "Build Evidence Checklist"
+        },
+        {
+          "id": "plan",
+          "label": "Recommend Action Plan"
+        }
+      ]
+    },
+    {
+      "id": "external",
+      "title": "External Review Submission",
+      "description": "Evaluate external review submission with source evidence, accountable ownership, financial or operational impact, and documented approval.",
+      "fields": [
+        {
+          "key": "caseReference",
+          "label": "External Review Submission Reference",
+          "type": "text",
+          "required": true
+        },
+        {
+          "key": "entity",
+          "label": "Denied Service",
+          "type": "text",
+          "required": true
+        },
+        {
+          "key": "reviewDate",
+          "label": "Review Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "key": "metric",
+          "label": "External Reviews",
+          "type": "number",
+          "required": true
+        },
+        {
+          "key": "evidenceNotes",
+          "label": "Evidence and Reviewer Notes",
+          "type": "textarea",
+          "required": false
+        }
+      ],
+      "states": [
+        "intake",
+        "analyzing",
+        "review",
+        "approved",
+        "closed"
+      ],
+      "examples": [
+        {
+          "id": "standard",
+          "label": "Fill Standard Case",
+          "values": {
+            "caseReference": "External Review Submission Reference STD-2026-104",
+            "entity": "Denied Service STD-2026-104",
+            "reviewDate": "2026-09-08",
+            "metric": 125,
+            "evidenceNotes": "Complete: source evidence, financial impact, control context, and documented reviewer rationale are available for analysis."
+          }
+        },
+        {
+          "id": "high-risk",
+          "label": "Fill High-Risk Case",
+          "values": {
+            "caseReference": "External Review Submission Reference RISK-2026-227",
+            "entity": "Denied Service RISK-2026-227",
+            "reviewDate": "2026-08-19",
+            "metric": 975,
+            "evidenceNotes": "Critical exception: source evidence, financial impact, control context, and documented reviewer rationale are available for analysis."
+          }
+        },
+        {
+          "id": "exception",
+          "label": "Fill Exception Case",
+          "values": {
+            "caseReference": "External Review Submission Reference EXC-2026-319",
+            "entity": "Denied Service EXC-2026-319",
+            "reviewDate": "2026-08-10",
+            "metric": 41,
+            "evidenceNotes": "Reviewer follow-up: source evidence, financial impact, control context, and documented reviewer rationale are available for analysis."
+          }
+        }
+      ],
+      "aiActions": [
+        {
+          "id": "assess",
+          "label": "Assess Risk & Value"
+        },
+        {
+          "id": "evidence",
+          "label": "Build Evidence Checklist"
+        },
+        {
+          "id": "plan",
+          "label": "Recommend Action Plan"
+        }
+      ]
+    },
+    {
+      "id": "outcome",
+      "title": "Overturn and Recovery Analytics",
+      "description": "Evaluate overturn and recovery analytics with source evidence, accountable ownership, financial or operational impact, and documented approval.",
+      "fields": [
+        {
+          "key": "caseReference",
+          "label": "Overturn and Recovery Analytics Reference",
+          "type": "text",
+          "required": true
+        },
+        {
+          "key": "entity",
+          "label": "Denied Service",
+          "type": "text",
+          "required": true
+        },
+        {
+          "key": "reviewDate",
+          "label": "Review Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "key": "metric",
+          "label": "Recovered Amount",
+          "type": "currency",
+          "required": true
+        },
+        {
+          "key": "evidenceNotes",
+          "label": "Evidence and Reviewer Notes",
+          "type": "textarea",
+          "required": false
+        }
+      ],
+      "states": [
+        "intake",
+        "analyzing",
+        "review",
+        "approved",
+        "closed"
+      ],
+      "examples": [
+        {
+          "id": "standard",
+          "label": "Fill Standard Case",
+          "values": {
+            "caseReference": "Overturn and Recovery Analytics Reference STD-2026-104",
+            "entity": "Denied Service STD-2026-104",
+            "reviewDate": "2026-09-08",
+            "metric": 285000,
+            "evidenceNotes": "Complete: source evidence, financial impact, control context, and documented reviewer rationale are available for analysis."
+          }
+        },
+        {
+          "id": "high-risk",
+          "label": "Fill High-Risk Case",
+          "values": {
+            "caseReference": "Overturn and Recovery Analytics Reference RISK-2026-227",
+            "entity": "Denied Service RISK-2026-227",
+            "reviewDate": "2026-08-19",
+            "metric": 875000,
+            "evidenceNotes": "Critical exception: source evidence, financial impact, control context, and documented reviewer rationale are available for analysis."
+          }
+        },
+        {
+          "id": "exception",
+          "label": "Fill Exception Case",
+          "values": {
+            "caseReference": "Overturn and Recovery Analytics Reference EXC-2026-319",
+            "entity": "Denied Service EXC-2026-319",
+            "reviewDate": "2026-08-10",
+            "metric": 142500,
+            "evidenceNotes": "Reviewer follow-up: source evidence, financial impact, control context, and documented reviewer rationale are available for analysis."
+          }
+        }
+      ],
+      "aiActions": [
+        {
+          "id": "assess",
+          "label": "Assess Risk & Value"
+        },
+        {
+          "id": "evidence",
+          "label": "Build Evidence Checklist"
+        },
+        {
+          "id": "plan",
+          "label": "Recommend Action Plan"
+        }
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "id": "denial",
+      "title": "Clinical Denial Intake Register",
+      "description": "Operational records, ownership, status, financial value, and evidence for clinical denial intake.",
+      "table": "op_denial",
+      "columns": [
+        {
+          "key": "caseReference",
+          "label": "Clinical Denial Intake Reference",
+          "type": "text",
+          "required": true,
+          "dbKey": "data_caseReference"
+        },
+        {
+          "key": "entity",
+          "label": "Denied Service",
+          "type": "text",
+          "required": true,
+          "dbKey": "data_entity"
+        },
+        {
+          "key": "reviewDate",
+          "label": "Review Date",
+          "type": "date",
+          "required": true,
+          "dbKey": "data_reviewDate"
+        },
+        {
+          "key": "metric",
+          "label": "Denied Amount",
+          "type": "currency",
+          "required": true,
+          "dbKey": "data_metric"
+        },
+        {
+          "key": "evidenceNotes",
+          "label": "Evidence and Reviewer Notes",
+          "type": "textarea",
+          "required": false,
+          "dbKey": "data_evidenceNotes"
+        }
+      ]
+    },
+    {
+      "id": "deadline",
+      "title": "Appeal Deadline Calculation Register",
+      "description": "Operational records, ownership, status, financial value, and evidence for appeal deadline calculation.",
+      "table": "op_deadline",
+      "columns": [
+        {
+          "key": "caseReference",
+          "label": "Appeal Deadline Calculation Reference",
+          "type": "text",
+          "required": true,
+          "dbKey": "data_caseReference"
+        },
+        {
+          "key": "entity",
+          "label": "Denied Service",
+          "type": "text",
+          "required": true,
+          "dbKey": "data_entity"
+        },
+        {
+          "key": "reviewDate",
+          "label": "Review Date",
+          "type": "date",
+          "required": true,
+          "dbKey": "data_reviewDate"
+        },
+        {
+          "key": "metric",
+          "label": "Days Remaining",
+          "type": "number",
+          "required": true,
+          "dbKey": "data_metric"
+        },
+        {
+          "key": "evidenceNotes",
+          "label": "Evidence and Reviewer Notes",
+          "type": "textarea",
+          "required": false,
+          "dbKey": "data_evidenceNotes"
+        }
+      ]
+    },
+    {
+      "id": "evidence",
+      "title": "Clinical Evidence Assembly Register",
+      "description": "Operational records, ownership, status, financial value, and evidence for clinical evidence assembly.",
+      "table": "op_evidence",
+      "columns": [
+        {
+          "key": "caseReference",
+          "label": "Clinical Evidence Assembly Reference",
+          "type": "text",
+          "required": true,
+          "dbKey": "data_caseReference"
+        },
+        {
+          "key": "entity",
+          "label": "Denied Service",
+          "type": "text",
+          "required": true,
+          "dbKey": "data_entity"
+        },
+        {
+          "key": "reviewDate",
+          "label": "Review Date",
+          "type": "date",
+          "required": true,
+          "dbKey": "data_reviewDate"
+        },
+        {
+          "key": "metric",
+          "label": "Evidence Completeness",
+          "type": "number",
+          "required": true,
+          "dbKey": "data_metric"
+        },
+        {
+          "key": "evidenceNotes",
+          "label": "Evidence and Reviewer Notes",
+          "type": "textarea",
+          "required": false,
+          "dbKey": "data_evidenceNotes"
+        }
+      ]
+    },
+    {
+      "id": "letter",
+      "title": "Appeal Letter Generation Register",
+      "description": "Operational records, ownership, status, financial value, and evidence for appeal letter generation.",
+      "table": "op_letter",
+      "columns": [
+        {
+          "key": "caseReference",
+          "label": "Appeal Letter Generation Reference",
+          "type": "text",
+          "required": true,
+          "dbKey": "data_caseReference"
+        },
+        {
+          "key": "entity",
+          "label": "Denied Service",
+          "type": "text",
+          "required": true,
+          "dbKey": "data_entity"
+        },
+        {
+          "key": "reviewDate",
+          "label": "Review Date",
+          "type": "date",
+          "required": true,
+          "dbKey": "data_reviewDate"
+        },
+        {
+          "key": "metric",
+          "label": "Appeal Value",
+          "type": "currency",
+          "required": true,
+          "dbKey": "data_metric"
+        },
+        {
+          "key": "evidenceNotes",
+          "label": "Evidence and Reviewer Notes",
+          "type": "textarea",
+          "required": false,
+          "dbKey": "data_evidenceNotes"
+        }
+      ]
+    },
+    {
+      "id": "peer",
+      "title": "Peer-to-Peer Review Register",
+      "description": "Operational records, ownership, status, financial value, and evidence for peer-to-peer review.",
+      "table": "op_peer",
+      "columns": [
+        {
+          "key": "caseReference",
+          "label": "Peer-to-Peer Review Reference",
+          "type": "text",
+          "required": true,
+          "dbKey": "data_caseReference"
+        },
+        {
+          "key": "entity",
+          "label": "Denied Service",
+          "type": "text",
+          "required": true,
+          "dbKey": "data_entity"
+        },
+        {
+          "key": "reviewDate",
+          "label": "Review Date",
+          "type": "date",
+          "required": true,
+          "dbKey": "data_reviewDate"
+        },
+        {
+          "key": "metric",
+          "label": "Reviews Scheduled",
+          "type": "number",
+          "required": true,
+          "dbKey": "data_metric"
+        },
+        {
+          "key": "evidenceNotes",
+          "label": "Evidence and Reviewer Notes",
+          "type": "textarea",
+          "required": false,
+          "dbKey": "data_evidenceNotes"
+        }
+      ]
+    },
+    {
+      "id": "level-two",
+      "title": "Second-Level Appeal Register",
+      "description": "Operational records, ownership, status, financial value, and evidence for second-level appeal.",
+      "table": "op_level_two",
+      "columns": [
+        {
+          "key": "caseReference",
+          "label": "Second-Level Appeal Reference",
+          "type": "text",
+          "required": true,
+          "dbKey": "data_caseReference"
+        },
+        {
+          "key": "entity",
+          "label": "Denied Service",
+          "type": "text",
+          "required": true,
+          "dbKey": "data_entity"
+        },
+        {
+          "key": "reviewDate",
+          "label": "Review Date",
+          "type": "date",
+          "required": true,
+          "dbKey": "data_reviewDate"
+        },
+        {
+          "key": "metric",
+          "label": "Cases Escalated",
+          "type": "number",
+          "required": true,
+          "dbKey": "data_metric"
+        },
+        {
+          "key": "evidenceNotes",
+          "label": "Evidence and Reviewer Notes",
+          "type": "textarea",
+          "required": false,
+          "dbKey": "data_evidenceNotes"
+        }
+      ]
+    },
+    {
+      "id": "external",
+      "title": "External Review Submission Register",
+      "description": "Operational records, ownership, status, financial value, and evidence for external review submission.",
+      "table": "op_external",
+      "columns": [
+        {
+          "key": "caseReference",
+          "label": "External Review Submission Reference",
+          "type": "text",
+          "required": true,
+          "dbKey": "data_caseReference"
+        },
+        {
+          "key": "entity",
+          "label": "Denied Service",
+          "type": "text",
+          "required": true,
+          "dbKey": "data_entity"
+        },
+        {
+          "key": "reviewDate",
+          "label": "Review Date",
+          "type": "date",
+          "required": true,
+          "dbKey": "data_reviewDate"
+        },
+        {
+          "key": "metric",
+          "label": "External Reviews",
+          "type": "number",
+          "required": true,
+          "dbKey": "data_metric"
+        },
+        {
+          "key": "evidenceNotes",
+          "label": "Evidence and Reviewer Notes",
+          "type": "textarea",
+          "required": false,
+          "dbKey": "data_evidenceNotes"
+        }
+      ]
+    },
+    {
+      "id": "outcome",
+      "title": "Overturn and Recovery Analytics Register",
+      "description": "Operational records, ownership, status, financial value, and evidence for overturn and recovery analytics.",
+      "table": "op_outcome",
+      "columns": [
+        {
+          "key": "caseReference",
+          "label": "Overturn and Recovery Analytics Reference",
+          "type": "text",
+          "required": true,
+          "dbKey": "data_caseReference"
+        },
+        {
+          "key": "entity",
+          "label": "Denied Service",
+          "type": "text",
+          "required": true,
+          "dbKey": "data_entity"
+        },
+        {
+          "key": "reviewDate",
+          "label": "Review Date",
+          "type": "date",
+          "required": true,
+          "dbKey": "data_reviewDate"
+        },
+        {
+          "key": "metric",
+          "label": "Recovered Amount",
+          "type": "currency",
+          "required": true,
+          "dbKey": "data_metric"
+        },
+        {
+          "key": "evidenceNotes",
+          "label": "Evidence and Reviewer Notes",
+          "type": "textarea",
+          "required": false,
+          "dbKey": "data_evidenceNotes"
+        }
+      ]
+    },
+    {
+      "id": "payer-master",
+      "title": "Payer and Appeal Rule Registry",
+      "description": "Controlled payer and appeal rule registry records supporting operational decisions and audit evidence.",
+      "table": "op_payer_master",
+      "columns": [
+        {
+          "key": "recordId",
+          "label": "Payer and Appeal Rule Registry ID",
+          "type": "text",
+          "required": true,
+          "dbKey": "data_recordId"
+        },
+        {
+          "key": "name",
+          "label": "Denied Service",
+          "type": "text",
+          "required": true,
+          "dbKey": "data_name"
+        },
+        {
+          "key": "status",
+          "label": "Status",
+          "type": "select",
+          "required": true,
+          "options": [
+            "Active",
+            "Pending",
+            "Suspended",
+            "Retired"
+          ],
+          "dbKey": "data_status"
+        },
+        {
+          "key": "effectiveDate",
+          "label": "Effective Date",
+          "type": "date",
+          "required": true,
+          "dbKey": "data_effectiveDate"
+        }
+      ]
+    },
+    {
+      "id": "service-master",
+      "title": "Service and Medical Policy Library",
+      "description": "Controlled service and medical policy library records supporting operational decisions and audit evidence.",
+      "table": "op_service_master",
+      "columns": [
+        {
+          "key": "recordId",
+          "label": "Service and Medical Policy Library ID",
+          "type": "text",
+          "required": true,
+          "dbKey": "data_recordId"
+        },
+        {
+          "key": "name",
+          "label": "Denied Service",
+          "type": "text",
+          "required": true,
+          "dbKey": "data_name"
+        },
+        {
+          "key": "status",
+          "label": "Status",
+          "type": "select",
+          "required": true,
+          "options": [
+            "Active",
+            "Pending",
+            "Suspended",
+            "Retired"
+          ],
+          "dbKey": "data_status"
+        },
+        {
+          "key": "effectiveDate",
+          "label": "Effective Date",
+          "type": "date",
+          "required": true,
+          "dbKey": "data_effectiveDate"
+        }
+      ]
+    },
+    {
+      "id": "clinician-master",
+      "title": "Reviewer and Specialist Directory",
+      "description": "Controlled reviewer and specialist directory records supporting operational decisions and audit evidence.",
+      "table": "op_clinician_master",
+      "columns": [
+        {
+          "key": "recordId",
+          "label": "Reviewer and Specialist Directory ID",
+          "type": "text",
+          "required": true,
+          "dbKey": "data_recordId"
+        },
+        {
+          "key": "name",
+          "label": "Denied Service",
+          "type": "text",
+          "required": true,
+          "dbKey": "data_name"
+        },
+        {
+          "key": "status",
+          "label": "Status",
+          "type": "select",
+          "required": true,
+          "options": [
+            "Active",
+            "Pending",
+            "Suspended",
+            "Retired"
+          ],
+          "dbKey": "data_status"
+        },
+        {
+          "key": "effectiveDate",
+          "label": "Effective Date",
+          "type": "date",
+          "required": true,
+          "dbKey": "data_effectiveDate"
+        }
+      ]
+    },
+    {
+      "id": "template-master",
+      "title": "Appeal Evidence Template Library",
+      "description": "Controlled appeal evidence template library records supporting operational decisions and audit evidence.",
+      "table": "op_template_master",
+      "columns": [
+        {
+          "key": "recordId",
+          "label": "Appeal Evidence Template Library ID",
+          "type": "text",
+          "required": true,
+          "dbKey": "data_recordId"
+        },
+        {
+          "key": "name",
+          "label": "Denied Service",
+          "type": "text",
+          "required": true,
+          "dbKey": "data_name"
+        },
+        {
+          "key": "status",
+          "label": "Status",
+          "type": "select",
+          "required": true,
+          "options": [
+            "Active",
+            "Pending",
+            "Suspended",
+            "Retired"
+          ],
+          "dbKey": "data_status"
+        },
+        {
+          "key": "effectiveDate",
+          "label": "Effective Date",
+          "type": "date",
+          "required": true,
+          "dbKey": "data_effectiveDate"
+        }
+      ]
+    }
+  ],
+  "domainProduct": {
+    "home": "AppealPath Clinical Command Center",
+    "context": "Denial triage, clinical evidence, appeal submission, peer review, and overturn analytics",
+    "features": [
+      {
+        "id": "denial-command",
+        "title": "Clinical Denial Intake",
+        "description": "Coordinate clinical denial intake across controlled source data, accountable review, measurable exposure, and retained evidence.",
+        "view": "evidence",
+        "modules": [
+          "denial",
+          "payer-master"
+        ],
+        "actions": [
+          {
+            "id": "approve-denial",
+            "label": "Approve Clinical Denial Intake",
+            "nextStatus": "Approved",
+            "auditDetail": "Approved clinical denial intake with source evidence and reviewer attribution."
+          },
+          {
+            "id": "escalate-denial",
+            "label": "Escalate Clinical Denial Intake",
+            "nextStatus": "Investigating",
+            "auditDetail": "Escalated clinical denial intake for exception remediation and additional evidence."
+          }
+        ]
+      },
+      {
+        "id": "deadline-command",
+        "title": "Appeal Deadline Calculation",
+        "description": "Coordinate appeal deadline calculation across controlled source data, accountable review, measurable exposure, and retained evidence.",
+        "view": "reconciliation",
+        "modules": [
+          "deadline",
+          "service-master"
+        ],
+        "actions": [
+          {
+            "id": "approve-deadline",
+            "label": "Approve Appeal Deadline Calculation",
+            "nextStatus": "Approved",
+            "auditDetail": "Approved appeal deadline calculation with source evidence and reviewer attribution."
+          },
+          {
+            "id": "escalate-deadline",
+            "label": "Escalate Appeal Deadline Calculation",
+            "nextStatus": "Investigating",
+            "auditDetail": "Escalated appeal deadline calculation for exception remediation and additional evidence."
+          }
+        ]
+      },
+      {
+        "id": "evidence-command",
+        "title": "Clinical Evidence Assembly",
+        "description": "Coordinate clinical evidence assembly across controlled source data, accountable review, measurable exposure, and retained evidence.",
+        "view": "control",
+        "modules": [
+          "evidence",
+          "clinician-master"
+        ],
+        "actions": [
+          {
+            "id": "approve-evidence",
+            "label": "Approve Clinical Evidence Assembly",
+            "nextStatus": "Approved",
+            "auditDetail": "Approved clinical evidence assembly with source evidence and reviewer attribution."
+          },
+          {
+            "id": "escalate-evidence",
+            "label": "Escalate Clinical Evidence Assembly",
+            "nextStatus": "Investigating",
+            "auditDetail": "Escalated clinical evidence assembly for exception remediation and additional evidence."
+          }
+        ]
+      },
+      {
+        "id": "letter-command",
+        "title": "Appeal Letter Generation",
+        "description": "Coordinate appeal letter generation across controlled source data, accountable review, measurable exposure, and retained evidence.",
+        "view": "deadline",
+        "modules": [
+          "letter",
+          "template-master"
+        ],
+        "actions": [
+          {
+            "id": "approve-letter",
+            "label": "Approve Appeal Letter Generation",
+            "nextStatus": "Approved",
+            "auditDetail": "Approved appeal letter generation with source evidence and reviewer attribution."
+          },
+          {
+            "id": "escalate-letter",
+            "label": "Escalate Appeal Letter Generation",
+            "nextStatus": "Investigating",
+            "auditDetail": "Escalated appeal letter generation for exception remediation and additional evidence."
+          }
+        ]
+      },
+      {
+        "id": "peer-command",
+        "title": "Peer-to-Peer Review",
+        "description": "Coordinate peer-to-peer review across controlled source data, accountable review, measurable exposure, and retained evidence.",
+        "view": "board",
+        "modules": [
+          "peer",
+          "level-two"
+        ],
+        "actions": [
+          {
+            "id": "approve-peer",
+            "label": "Approve Peer-to-Peer Review",
+            "nextStatus": "Approved",
+            "auditDetail": "Approved peer-to-peer review with source evidence and reviewer attribution."
+          },
+          {
+            "id": "escalate-peer",
+            "label": "Escalate Peer-to-Peer Review",
+            "nextStatus": "Investigating",
+            "auditDetail": "Escalated peer-to-peer review for exception remediation and additional evidence."
+          }
+        ]
+      }
+    ]
+  },
+  "integrations": [
+    {
+      "id": "integration-1",
+      "name": "Denial management system",
+      "category": "Domain data source",
+      "mode": "Read-only demo connector"
+    },
+    {
+      "id": "integration-2",
+      "name": "EHR clinical documents",
+      "category": "Domain data source",
+      "mode": "Read-only demo connector"
+    },
+    {
+      "id": "integration-3",
+      "name": "Payer portal",
+      "category": "Domain data source",
+      "mode": "Read-only demo connector"
+    },
+    {
+      "id": "integration-4",
+      "name": "Utilization management",
+      "category": "Domain data source",
+      "mode": "Read-only demo connector"
+    },
+    {
+      "id": "integration-5",
+      "name": "Payment posting",
+      "category": "Domain data source",
+      "mode": "Read-only demo connector"
+    }
+  ],
+  "featureCount": 40,
+  "seededRecords": 300,
+  "demoUsers": 3,
+  "apiPort": 5543,
+  "dbName": "profit_ai_clinical_appeals_external_review"
+}
